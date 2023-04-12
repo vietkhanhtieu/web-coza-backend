@@ -1,0 +1,125 @@
+﻿@model Final.Models.ABOUT
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/MyLayout.cshtml";
+}
+
+@section _Header{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 16px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+    </style>
+}
+<body>
+
+    <div style="margin: 0px 5px">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading" style="text-align: center">
+                    Delete About
+                </div>
+                <div class="panel-body">
+
+                    <h2 style="text-align: center; font-weight: bold; font-size: 24px; color: red">Are you sure you want to delete this?</h2>
+
+                    <div>
+                        <h4 style="text-align: center; font-weight: bold; font-size: 24px; color: red">About</h4>
+
+                        <hr />
+                        <div class="form-horizontal">
+                            <div class="row  mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Tiêu đề
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-control">@Model.TITLE</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Hình ảnh
+                                </div>
+                                <div class="col-md-8">
+                                    <img src="~/images/@Model.IMG" width="400px" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Mô tả
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" style="height: 300px; background-color: #fff" readonly>@Html.Raw(Model.DESCRIPTION)</textarea>
+                                </div>
+                            </div>
+                                
+                            <div class="row mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Meta
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-control">@Model.META</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Hiển thị
+                                </div>
+                                <div class="col-md-8">
+                                    @{
+                                        bool hide = (Model.HIDE.GetValueOrDefault(true) ? true : false);
+                                    }
+                                    @Html.DisplayFor(Model => hide, new { htmlAttributes = new { style = "color: green" } })
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Vị trí
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-control">Vị trí</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="control-label col-md-2 font-weight-bold">
+                                    Ngày đăng
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-control">@Model.DATE_BEGIN</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        @Html.ActionLink("Back to List", "Index") |
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+
+                    </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

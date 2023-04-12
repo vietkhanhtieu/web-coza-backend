@@ -1,0 +1,111 @@
+﻿@model Final.Models.ABOUT
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/MyLayout.cshtml";
+}
+
+@section _Header{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-b9OvT0OywpXYIyPy2wT7F12RmE+JZV+/mKAQ1j7VXvNE69Gh7z/Ki3qghmOtgmPjM5i5o5N5NakF5n9rN92Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+}
+
+<div style="margin: 0px 5px">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading" style="text-align: center">
+                Create About
+            </div>
+            @using (Html.BeginForm("Create", "ABOUTs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.Label("Tiêu đề", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.TITLE, new { htmlAttributes = new { @class = "form-control", id = "name" } })
+                            @Html.ValidationMessageFor(model => model.TITLE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            <input type="file" id="img" name="img" accept=".jpg, .png, gif, .jpeg, .bmp" />
+                            @Html.ValidationMessageFor(model => model.IMG, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                     
+                            @Html.TextAreaFor(model => model.DESCRIPTION)
+                            @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Meta", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.META, new { htmlAttributes = new { @class = "form-control", id = "meta" } })
+                            @Html.ValidationMessageFor(model => model.META, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Vị trí", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.ORDER, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ORDER, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @*<div class="checkbox">*@
+                            @*@Html.EditorFor(model => model.HIDE)*@
+                            @{
+                                bool hide = true;
+                            }
+                            @Html.CheckBoxFor(Model => hide)
+                            @Html.ValidationMessageFor(model => model.HIDE, "", new { @class = "text-danger" })
+
+                            @*</div>*@
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DATE_BEGIN, new { htmlAttributes = new { @class = "form-control", id = "myDateTimeInput" } })
+                            @Html.ValidationMessageFor(model => model.DATE_BEGIN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a class="btn btn-default my-3" href="~/Admin/ABOUTs/Index">Back to List</a>
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+

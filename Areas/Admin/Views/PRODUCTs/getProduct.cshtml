@@ -1,0 +1,124 @@
+﻿
+@model IEnumerable<Final.Models.PRODUCT>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 16px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+    </style>
+
+</head>
+<body>
+
+    <table class="table table-bordered display" id="myTable" style="width: 100%" cellspacing="0">
+        <thead>
+            <tr>
+
+                <th>
+                    STT
+                </th>
+                <th>
+                    Tên sản phẩm
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Gía
+                </th>
+
+
+                <th>
+                    Màu sắc
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.META)
+                </th>
+                <th>
+                    HIển thị
+                </th>
+                <th>
+                    Vị trí
+                </th>
+                <th>
+                    Ngày đăng
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var stt = 1;}
+            @foreach (var item in Model)
+            {
+                <tr style="max-height: 5vh">
+                    <td>
+                        @Html.Raw(stt++)
+                    </td>
+
+                    <td style="width: 100px;">
+                        @Html.DisplayFor(modelItem => item.NAME)
+                    </td>
+                    <td style="width: 150px;">
+                        <img style="max-height:100%; max-width:100%" src="~/images/@item.IMG" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PRICE)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COLOR)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.META)
+                    </td>
+                    <td>
+                        <p>@Html.Raw(item.HIDE == true ? "Hiển thị" : "Không hiển thị")</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ORDER)
+                    </td>
+                    <td>
+                        @string.Format("{0:dd-MM-yyyy}", item.DATE_BEGIN)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "fas fa-pencil btn btn-light" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "fas fa-trash btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+    
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function ($) {
+            $('#myTable').DataTable();
+        });
+// Code that uses other library's $ can follow here.
+    </script>
+
+
+</body>  
+
+
+

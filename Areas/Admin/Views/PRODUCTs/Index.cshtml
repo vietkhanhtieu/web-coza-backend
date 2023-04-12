@@ -1,0 +1,81 @@
+﻿@model Final.Models.CATEGORY
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/MyLayout.cshtml";
+}
+
+@section _Header{
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 16px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+    </style>
+}
+
+<body>
+
+    <div class="card shadow mb-4" style="margin: 0px 5px">
+        <div class="card-header py-3" style="background-color: #4e73df">
+
+            <div>
+                <h3 class="m-0 font-weight-bold text-white" style="text-align: center">Quản lý trang Sản phẩm</h3>
+
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="" style="text-align: right; padding-bottom: 10px">
+                <div class="btn-group">
+                    @Html.DropDownListFor(model => model.ID, (SelectList)ViewBag.Category, "--- Tất cả các sản phẩm ---",
+                                                                            new
+                                                                            {
+                                                                               @class = "form-control",
+                                                                               @id = "Category"
+                                                                            })
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-success my-3" href="~/Admin/PRODUCTs/Create" style="float: right; ">Thêm mới</a>
+
+                </div>
+            </div>
+            <div id="getProduct"></div>
+
+        </div>
+    </div>
+</body>
+
+@section _Footer{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+   
+
+    <script type="text/javascript">
+        var js = jQuery.noConflict(true);
+        js(document).ready(function () {
+            function getProduct() {
+                var CategoryID = js("#Category").val();
+                js.ajax({
+                    url: '@Url.Action("getProduct", "PRODUCTs")',
+                    type: 'GET',
+                    data: { id: CategoryID },
+                    success: function (data) {
+                        js("#getProduct").html(data);
+                    },
+                    error: function (data) {
+                        alert("some thing wrong");
+                    }
+                });
+            }
+            getProduct();
+            js("#Category").change(function () {
+                getProduct();
+            })
+
+        })
+    </script>
+}

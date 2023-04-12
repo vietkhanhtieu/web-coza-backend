@@ -1,0 +1,118 @@
+﻿@model Final.Models.MENU
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/MyLayout.cshtml";
+}
+
+@section _Header{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-b9OvT0OywpXYIyPy2wT7F12RmE+JZV+/mKAQ1j7VXvNE69Gh7z/Ki3qghmOtgmPjM5i5o5N5NakF5n9rN92Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+}
+
+<style>
+    dt{
+        margin-bottom: 12px;
+    }
+</style>
+<div style="margin: 0px 5px">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading" style="text-align: center">
+                Detail MENU
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+
+                  
+
+                <dt>
+                    Tên Menu
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })*@
+                    <div class="form-control">@Model.NAME</div>
+
+                </dd>
+                       
+
+                <dt>
+                    Link
+                </dt>
+
+                <dd>
+                    <div class="form-control">@Model.LINK</div>
+                </dd>
+
+                <dt>
+                    Meta
+                </dt>
+
+                <dd>
+                    <div class="form-control">@Model.META</div>
+
+
+                </dd>
+
+                <dt>
+                    Hiển thị
+                </dt>
+
+                <dd>
+                    <div class="form-control">@Model.HIDE</div>
+
+                </dd>
+
+                <dt>
+                    Vị trí
+                </dt>
+
+                <dd>
+                    <div class="form-control">@Model.ORDER</div>
+
+                </dd>
+
+                <dt>
+                    Ngày đăng
+                </dt>
+
+                <dd>
+                    <div class="form-control">@Model.DATE_BEGIN</div>
+
+                </dd>
+
+                <dd>
+
+                </dd>
+                <dt>
+                    @Html.ActionLink("Back to List", "Index") |
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+                </dt>
+
+
+            </dl>
+
+
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section _Footer{
+    <script src="~/Areas/Admin/Content/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js">
+    </script>
+}
